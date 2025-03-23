@@ -28,20 +28,28 @@ class SimpleRAGChain(RAGChain):
             Die generierte Antwort als String
         """
         # Dokumente abrufen
+        print(f"[DEBUG] RAG-Chain: Starte Retrieval für Query: '{query}'")
         documents = self.retriever.retrieve(query)
+        print(f"[DEBUG] RAG-Chain: Retrieval abgeschlossen, {len(documents)} Dokumente gefunden")
 
         # Leerer Kontext als Fallback
         context = "Es stehen keine relevanten Informationen zur Verfügung."
 
         # Kontext formatieren, falls Dokumente gefunden wurden
         if documents:
+            print(f"[DEBUG] RAG-Chain: Formatiere gefundene Dokumente")
             context = self.retriever.format_retrieved_documents(documents)
+        else:
+            print(f"[DEBUG] RAG-Chain: Keine Dokumente gefunden, verwende Fallback-Kontext")
 
         # Prompt formatieren
+        print(f"[DEBUG] RAG-Chain: Formatiere Prompt für LLM")
         prompt = self.llm.format_prompt(query, context)
 
         # Antwort generieren
+        print(f"[DEBUG] RAG-Chain: Generiere Antwort mit LLM")
         response = self.llm.generate(prompt, **kwargs)
+        print(f"[DEBUG] RAG-Chain: Antwort generiert: '{response[:50]}...'")
 
         return response
 
@@ -57,19 +65,26 @@ class SimpleRAGChain(RAGChain):
             Ein Generator, der die generierte Antwort stückweise zurückgibt
         """
         # Dokumente abrufen
+        print(f"[DEBUG] RAG-Chain (Stream): Starte Retrieval für Query: '{query}'")
         documents = self.retriever.retrieve(query)
+        print(f"[DEBUG] RAG-Chain (Stream): Retrieval abgeschlossen, {len(documents)} Dokumente gefunden")
 
         # Leerer Kontext als Fallback
         context = "Es stehen keine relevanten Informationen zur Verfügung."
 
         # Kontext formatieren, falls Dokumente gefunden wurden
         if documents:
+            print(f"[DEBUG] RAG-Chain (Stream): Formatiere gefundene Dokumente")
             context = self.retriever.format_retrieved_documents(documents)
+        else:
+            print(f"[DEBUG] RAG-Chain (Stream): Keine Dokumente gefunden, verwende Fallback-Kontext")
 
         # Prompt formatieren
+        print(f"[DEBUG] RAG-Chain (Stream): Formatiere Prompt für LLM")
         prompt = self.llm.format_prompt(query, context)
 
         # Antwort als Stream generieren
+        print(f"[DEBUG] RAG-Chain (Stream): Generiere Antwort-Stream mit LLM")
         return self.llm.generate_stream(prompt, **kwargs)
 
 

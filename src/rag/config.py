@@ -39,15 +39,15 @@ class VectorStoreConfig:
 @dataclass
 class RetrievalConfig:
     """Konfiguration für den Retrieval-Mechanismus."""
-    top_k: int = int(os.getenv("RETRIEVAL_TOP_K", "3"))
-    threshold: float = float(os.getenv("RETRIEVAL_THRESHOLD", "0.7"))
+    top_k: int = int(os.getenv("RETRIEVAL_TOP_K", "5"))  # Erhöht von 3 auf 5
+    threshold: float = float(os.getenv("RETRIEVAL_THRESHOLD", "0.3"))  # Reduziert von 0.7 auf 0.3
 
 
 @dataclass
 class WebConfig:
     """Konfiguration für die Web-App."""
     port: int = int(os.getenv("FLASK_PORT", "5000"))
-    debug: bool = os.getenv("FLASK_DEBUG", "1") == "1"
+    debug: bool = os.getenv("FLASK_DEBUG", "0") == "1"  # Debug-Modus standardmäßig deaktiviert
 
 
 @dataclass

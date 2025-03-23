@@ -52,8 +52,13 @@ class LLM(ABC):
         Returns:
             Ein formatierter Prompt für das Language Model
         """
-        return f"""Beantworte die folgende Frage basierend auf dem gegebenen Kontext.
-Wenn die Antwort nicht im Kontext zu finden ist, antworte mit "Ich kann diese Frage nicht beantworten, da die nötigen Informationen nicht im Kontext enthalten sind."
+        return f"""Du bist ein Assistent, der Fragen zur DSGVO (Datenschutz-Grundverordnung) beantwortet.
+Beantworte die folgende Frage ausschließlich basierend auf dem gegebenen Kontext.
+
+Wenn der Kontext die Information "Es wurden keine relevanten Dokumente gefunden" enthält oder die Antwort nicht ausreichend im Kontext enthalten ist, antworte mit:
+"Ich kann diese Frage nicht beantworten, da die nötigen Informationen nicht im bereitgestellten Kontext enthalten sind."
+
+Erfinde KEINE Informationen. Nutze KEIN zusätzliches Wissen, das nicht im Kontext enthalten ist. Wenn du dir unsicher bist, sage, dass du die Frage nicht beantworten kannst.
 
 Kontext:
 {context}
@@ -61,4 +66,4 @@ Kontext:
 Frage:
 {query}
 
-Antwort:"""
+Antwort (basiere deine Antwort ausschließlich auf dem bereitgestellten Kontext):"""
