@@ -1,4 +1,6 @@
-# Unser RAG-System
+# Minimales RAG-System
+
+Dieses Projekt stellt ein minimales, erweiterbares RAG-System (Retrieval-Augmented Generation) bereit, das für den schnellen Einstieg und die einfache Erweiterung konzipiert ist.
 
 ## Vorbereitung
 
