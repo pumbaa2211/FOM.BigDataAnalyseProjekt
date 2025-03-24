@@ -5,7 +5,10 @@ colorama==0.4.6
 comm==0.2.2
 debugpy==1.8.12
 decorator==5.2.1
+dotenv==0.9.9
 executing==2.2.0
+flask==3.1.0
+flask-socketio==5.5.1
 ghp-import==2.1.0
 ipykernel==6.29.5
 ipython==9.0.0
@@ -22,6 +25,7 @@ mkdocs==1.6.1
 mkdocs-get-deps==0.2.0
 nest-asyncio==1.6.0
 numpy==2.2.3
+openai==1.68.2
 packaging==24.2
 pandas==2.2.3
 parso==0.8.4
